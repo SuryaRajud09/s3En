@@ -3,6 +3,9 @@ Parameters:
     Default: 'Suspended'
     Type: String
     AllowedValues: [Enabled, Suspended]
+  Owner:
+    Type: String
+    Description: 'Bucket Owner'
 
   Department:
     Type: String
@@ -12,12 +15,17 @@ Resources:
   Bucket:
     Type: AWS::S3::Bucket
     Properties:
-        BucketName: 'new-encrypted-file'
+        BucketName: 's3-encrypted-file'
         AccessControl: Private
         VersioningConfiguration:
           Status: !Ref Versioning
         BucketEncryption:
           ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
-              SSEAlgorithm: 'aws:kms'        
-
+              SSEAlgorithm: 'aws:kms' 
+            
+        Tags:
+        - Key : Owner
+          Value: !Ref Owner
+        - Key : Department
+          Value: !Ref Department        
