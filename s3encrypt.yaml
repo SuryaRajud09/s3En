@@ -22,9 +22,20 @@ Resources:
         BucketEncryption:
           ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
-              SSEAlgorithm: 'aws:kms' 
-        Tags:
-        - Key : Owner
-          Value: !Ref Owner
-        - Key : Department
-          Value: !Ref Department
+              SSEAlgorithm: 'aws:kms'
+              KMSMasterKeyID: !GetAtt 'Key.Arn'
+
+  Key:
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Type: 'AWS::KMS::Key'
+    Properties:
+      EnableKeyRotation: 'true'
+      KeyPolicy:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            AWS: !Sub 'arn:aws:iam::${AWS::AccountId}:root'
+          Action: 'kms:*'
+          Resource: '*'
