@@ -22,10 +22,5 @@ Resources:
         BucketEncryption:
           ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
-              SSEAlgorithm: 'aws:kms'
-              KMSMasterKeyID: arn:aws:kms:us-east-1:824812782977:key/52bdacad-d6ac-405d-8347-116428a88996         
-        Tags:
-        - Key : Owner
-          Value: !Ref Owner
-        - Key : Department
-          Value: !Ref Department
+              SSEAlgorithm: 'aws:kms'        
+
