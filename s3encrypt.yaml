@@ -26,6 +26,5 @@ Resources:
               SSEAlgorithm: 'aws:kms'         
 
         Tags:
-        - Key : Owner
         - Key : Department
           Value: !Ref Department
