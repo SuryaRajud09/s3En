@@ -3,9 +3,6 @@ Parameters:
     Default: 'Suspended'
     Type: String
     AllowedValues: [Enabled, Suspended]
-  Owner:
-    Type: String
-    Description: 'Bucket Owner'
 
   Department:
     Type: String
@@ -22,10 +19,4 @@ Resources:
         BucketEncryption:
           ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
-              SSEAlgorithm: 'aws:kms' 
-            
-        Tags:
-        - Key : Owner
-          Value: !Ref Owner
-        - Key : Department
-          Value: !Ref Department        
+              SSEAlgorithm: 'aws:kms'         
