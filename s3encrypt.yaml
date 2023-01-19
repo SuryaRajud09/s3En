@@ -23,40 +23,7 @@ Resources:
           ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
               SSEAlgorithm: 'aws:kms'
-              KMSMasterKeyID: !GetAtt 'Key.Arn'
-              
-   BucketPolicy:
-    Type: AWS::S3::BucketPolicy
-    Properties:
-      Bucket: !Ref Bucket
-      PolicyDocument:
-        Version: 2012-10-17
-        Statement:
-          - Action:
-              - 's3:PutObject'
-            Effect: Deny
-            Resource: !Sub "arn:${AWS::Partition}:s3:::${Bucket}/*"
-            Principal: '*'
-            Condition:
-              StringNotEquals:
-                s3:x-amz-server-side-encryption: ''
-                s3:x-amz-server-side-encryption-aws-kms-key-id: !GetAtt 'Key.Arn'
-
-  Key:
-    DeletionPolicy: Retain
-    UpdateReplacePolicy: Retain
-    Type: 'AWS::KMS::Key'
-    Properties:
-      EnableKeyRotation: 'true'
-      KeyPolicy:
-        Version: '2012-10-17'
-        Statement:
-        - Effect: Allow
-          Principal:
-            AWS: !Sub 'arn:aws:iam::${AWS::AccountId}:root'
-          Action: 'kms:*'
-          Resource: '*'
-          
+              KMSMasterKeyID: arn:aws:kms:us-east-1:824812782977:key/52bdacad-d6ac-405d-8347-116428a88996         
         Tags:
         - Key : Owner
           Value: !Ref Owner
