@@ -26,7 +26,6 @@ Resources:
         BlockPublicAcls: 'true'
         BlockPublicPolicy: 'true'
         IgnorePublicAcls: 'true'
-        RestrictPublicBuckets: 'true'
         Tags:
         - Key : Owner
           Value : !Ref Owner
