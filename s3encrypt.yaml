@@ -23,9 +23,6 @@ Resources:
           ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
               SSEAlgorithm: 'aws:kms'
-        BlockPublicAcls: 'true'
-        BlockPublicPolicy: 'true'
-        IgnorePublicAcls: 'true'
         Tags:
         - Key : Owner
           Value : !Ref Owner
