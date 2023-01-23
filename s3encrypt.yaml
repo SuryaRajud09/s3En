@@ -7,18 +7,15 @@ Parameters:
     Type: String
     Description: 'Bucket Owner'
     Default: 'raju'
-
   Department:
     Type: String
     Description: 'Department Name'
     Default: 'IT'
-
-
 Resources:
   Bucket:
     Type: AWS::S3::Bucket
     Properties:
-        BucketName: 's3-encrypted-file'
+        BucketName: s3encryptedb1
         AccessControl: Private
         VersioningConfiguration:
           Status: !Ref Versioning
@@ -30,7 +27,6 @@ Resources:
         BlockPublicPolicy: 'true'
         IgnorePublicAcls: 'true'
         RestrictPublicBuckets: 'true'
-
         Tags:
         - Key : Owner
           Value : !Ref Owner
